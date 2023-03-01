@@ -23,15 +23,16 @@ def create(request: schemas.User, db: Session):
         hashedPassword = pass_Context.hash(request.passOfUser)
         new_user = models.User(login=request.login, passOfUser=hashedPassword, email=request.email, firstname=request.firstname,
                                lastname=request.lastname, telephone=request.telephone, role_id=request.role_id, is_active=request.is_active)
+        print(new_user)
         
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
 
-        if settings.EMAILS_ENABLED and new_user.email:
+        """if settings.EMAILS_ENABLED and new_user.email:
             send_new_account_email(
                 email_to=new_user.email, username=new_user.login, password=new_user.passOfUser
-            )
+            )"""
         return new_user
 
     except:
