@@ -1,1 +1,1 @@
-web: uvicorn main:water
+web: uvicorn main:water --host=0.0.0.0 --port=${PORT:-5000}
