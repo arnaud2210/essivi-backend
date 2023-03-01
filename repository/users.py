@@ -29,10 +29,10 @@ def create(request: schemas.User, db: Session):
         db.commit()
         db.refresh(new_user)
 
-        """if settings.EMAILS_ENABLED and new_user.email:
+        if settings.EMAILS_ENABLED and request.email:
             send_new_account_email(
-                email_to=new_user.email, username=new_user.login, password=new_user.passOfUser
-            )"""
+                email_to=request.email, username=request.login, password=request.passOfUser
+            )
         return new_user
 
     except:

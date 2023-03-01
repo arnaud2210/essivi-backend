@@ -33,9 +33,9 @@ class Settings(BaseSettings):
         )
 
     EMAIL_TEST_USER: EmailStr = "bob@gmail.com"  # type: ignore
-    FIRST_SUPERUSER: EmailStr = "adjimonarnaud@gmail.com"
-    FIRST_SUPERUSER_PASSWORD: str = "naud.2002"
-    USERS_OPEN_REGISTRATION: bool = False
+    #FIRST_SUPERUSER: EmailStr = "adjimonarnaud@gmail.com"
+    #FIRST_SUPERUSER_PASSWORD: str = "naud.2002"
+    USERS_OPEN_REGISTRATION: bool = True
 
     class Config:
         case_sensitive = True
