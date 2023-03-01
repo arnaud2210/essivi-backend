@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     SMTP_HOST: Optional[str] = "smtp.mailgun.org"
     SMTP_USER: Optional[str] = "postmaster@essivi-api.me"
     SMTP_PASSWORD: Optional[str] = "cf232843907fd7418043ded515b3207f-15b35dee-ce842eee"
-    EMAILS_FROM_EMAIL: Optional[EmailStr] = " brad@essivi-api.me"
+    EMAILS_FROM_EMAIL: Optional[EmailStr] = "brad@essivi-api.me"
     EMAILS_FROM_NAME: Optional[str] = "ESSIVI-SARL"
 
     @validator("EMAILS_FROM_NAME")
@@ -32,7 +32,7 @@ class Settings(BaseSettings):
             and values.get("EMAILS_FROM_EMAIL")
         )
 
-    EMAIL_TEST_USER: EmailStr = "bob@gmail.com"  # type: ignore
+    #EMAIL_TEST_USER: EmailStr = "brad@essivi-api.me"  # type: ignore
     #FIRST_SUPERUSER: EmailStr = "adjimonarnaud@gmail.com"
     #FIRST_SUPERUSER_PASSWORD: str = "naud.2002"
     USERS_OPEN_REGISTRATION: bool = True
