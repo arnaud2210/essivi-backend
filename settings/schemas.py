@@ -19,6 +19,7 @@ class UpdateDeliver(BaseModel):
 
 
 class ShowDeliver(BaseModel):
+    idDelivery: int
     delivery_quantity: int
     delivery_locations: str
     amount_collected: float
@@ -91,6 +92,7 @@ class UpdateOrder(BaseModel):
 
 
 class ShowOrder(Ordered):
+    idOrdered: int
     ordered_quantity: int
     ordered_date: datetime
     customer_id: int
@@ -110,6 +112,7 @@ class Customer(BaseModel):
 
 
 class ShowCustomer(BaseModel):
+    idCustomer: int
     firstnameOfCustomer: str
     lastnameOfCustomer: str
     customerPhone: str
@@ -151,6 +154,7 @@ class Role(BaseModel):
 
 
 class ShowRole(BaseModel):
+    id: int
     label: str
     menus: list[ShowMenu] = []
     users: list[ShowUser] = []
@@ -181,6 +185,7 @@ class Product(BaseModel):
 
 
 class ShowProduct(BaseModel):
+    idProduct: int
     labelOfProduct: str
     unitPrice: float
     productQuantity: int
