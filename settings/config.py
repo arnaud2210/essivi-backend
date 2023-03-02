@@ -9,9 +9,9 @@ class Settings(BaseSettings):
     SMTP_TLS: bool = True
     SMTP_PORT: Optional[int] = 587
     SMTP_HOST: Optional[str] = "smtp.mailgun.org"
-    SMTP_USER: Optional[str] = "postmaster@essivi-api.me"
-    SMTP_PASSWORD: Optional[str] = "cf232843907fd7418043ded515b3207f-15b35dee-ce842eee"
-    EMAILS_FROM_EMAIL: Optional[EmailStr] = "brad@essivi-api.me"
+    SMTP_USER: Optional[str] = "postmaster@sandbox97deeaf6ddac4fc09bbe22b11a716626.mailgun.org"
+    SMTP_PASSWORD: Optional[str] = "11bde2921934388833ec2722030417ad-15b35dee-92eef476"
+    EMAILS_FROM_EMAIL: Optional[EmailStr] = "brad@sandbox97deeaf6ddac4fc09bbe22b11a716626.mailgun.org"
     EMAILS_FROM_NAME: Optional[str] = "ESSIVI-SARL"
 
     @validator("EMAILS_FROM_NAME")

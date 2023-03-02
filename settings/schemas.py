@@ -74,6 +74,9 @@ class User(BaseModel):
     role_id: int
     is_active: bool
 
+    class Config:
+        orm_mode = True
+
 
 class UpdateUser(BaseModel):
     passOfUser: str
@@ -124,12 +127,7 @@ class ShowCustomer(BaseModel):
         orm_mode = True
 
 
-class ShowUser(BaseModel):
-    login: str
-    email: EmailStr
-    firstname: str
-    lastname: str
-    telephone: str
+class ShowUser(User):
     delivers: list[ShowDeliver] = []
     customers: list[ShowCustomer] = []
 
