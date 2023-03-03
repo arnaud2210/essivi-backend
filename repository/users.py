@@ -3,7 +3,6 @@ from fastapi import HTTPException, status
 from settings.hashing import pass_Context
 from settings import schemas, models
 from package.tools import log_message
-from settings.config import settings
 from settings.mailgun import send_email
 # from starlette.responses import JSONResponse
 # from fastapi_mail import FastMail, MessageSchema, MessageType

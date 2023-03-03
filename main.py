@@ -2,9 +2,23 @@ from fastapi import FastAPI
 from routers import menu, roles, users, authentication, customers, products, orders, delivers, categories, reports
 from settings.database import engine
 from settings import models
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 water = FastAPI()
+
+
+# Configurer les origines autorisées
+origins = ["*"]
+
+# Ajouter le middleware CORS
+water.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 models.Base.metadata.create_all(bind=engine)
 

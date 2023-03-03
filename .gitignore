@@ -1,6 +1,10 @@
 __pycache__
 env
 
-data
-
 .env
+
+__pycache__
+
+config
+
+utils
