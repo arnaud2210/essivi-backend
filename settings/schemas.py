@@ -82,6 +82,15 @@ class UpdateUser(BaseModel):
     passOfUser: str
 
 
+class UpdateUserAccount(BaseModel):
+    login: str
+    email: EmailStr
+    firstname: str
+    lastname: str
+    telephone: str
+    is_active: bool
+
+
 class Ordered(BaseModel):
     ordered_quantity: int
     ordered_date: datetime

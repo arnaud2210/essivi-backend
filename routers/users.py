@@ -28,9 +28,14 @@ def get_one_user(idUser: int, response: Response, db: Session = Depends(get_db_c
     return users.show_user(idUser, db)
 
 
-@router.put('/{id}', status_code=status.HTTP_202_ACCEPTED)
+@router.put('/password/{id}', status_code=status.HTTP_202_ACCEPTED)
 def update_user(idUser: int, request: schemas.UpdateUser, db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
     return users.update(idUser, request, db)
+
+
+@router.put('/account/{id}', status_code=status.HTTP_202_ACCEPTED)
+def update_user_account(idUser: int, request: schemas.UpdateUserAccount, db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+    return users.update_account(idUser, request, db)
 
 
 @router.delete('/{id}', status_code=status.HTTP_204_NO_CONTENT)

@@ -66,6 +66,24 @@ def update(idUser: int, request: schemas.UpdateUser, db: Session):
     return "updated"
 
 
+def update_account(idUser: int, request: schemas.UpdateUserAccount, db: Session):
+    user = db.query(models.User).filter(
+        models.User.idUser == idUser).first()
+
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"User with the id {idUser} not found")
+
+    user.login = request.login
+    user.email = request.email
+    user.firstname = request.firstname
+    user.lastname = request.lastname
+    user.telephone = request.telephone
+    user.is_active = request.is_active
+    db.commit()
+    return "updated"
+
+
 def delete(idUser: int, db: Session):
     db.query(models.User).filter(models.User.idUser ==
                                  idUser).delete(synchronize_session=False)
