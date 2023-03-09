@@ -65,6 +65,7 @@ class ShowDeliver(BaseModel):
 
 
 class User(BaseModel):
+    idUser: int
     login: str
     passOfUser: str
     email: EmailStr
