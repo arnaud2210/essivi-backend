@@ -65,7 +65,6 @@ class ShowDeliver(BaseModel):
 
 
 class User(BaseModel):
-    idUser: int
     login: str
     passOfUser: str
     email: EmailStr
@@ -138,6 +137,7 @@ class ShowCustomer(BaseModel):
 
 
 class ShowUser(User):
+    idUser: int
     delivers: list[ShowDeliver] = []
     customers: list[ShowCustomer] = []
 
