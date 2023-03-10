@@ -12,13 +12,18 @@ router = APIRouter(
 )
 
 
+@router.get('/caOfCatPerMonth/')
+def chiffre_categorie_par_mois(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+    return reports.caOfCatPerMonth(db)
+
+
 @router.get('/caPerMonth/')
-def caPerMonth(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+def chiffre_par_mois(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
     return reports.caPerMonth(db)
 
 
 @router.get('/numCustomPerAgent/')
-def numCustomPerAgent(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+def nombre_client_par_agent(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
     return reports.numCustomPerAgent(db)
 
 
@@ -28,5 +33,5 @@ def user_type(db: Session = Depends(get_db_connect), current_user: schemas.User 
 
 
 @router.get('/quantityPerCat/')
-def quantityPerCat(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+def quantite_produit_par_categorie(db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
     return reports.quantityPerCat(db)

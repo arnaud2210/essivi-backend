@@ -14,6 +14,16 @@ def caPerMonth(db: Session):
         return {log_message}
 
 
+def caOfCatPerMonth(db: Session):
+    try:
+        query = select([text(' * from "chiffreCatPerMonth"')])
+        result = db.execute(query)
+        data = result.fetchall()
+        return data
+    except:
+        return {log_message}
+
+
 def numCustomPerAgent(db: Session):
     try:
         query = select([text(' * from "nombreClientParAgent"')])
