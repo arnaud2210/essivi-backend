@@ -204,6 +204,7 @@ class ShowProduct(BaseModel):
 
 
 class Category(BaseModel):
+    id: int
     labelOfCat: str
 
 class ShowCategory(Category):
