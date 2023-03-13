@@ -138,6 +138,7 @@ class ShowCustomer(BaseModel):
 
 class ShowUser(UpdateUserAccount):
     idUser: int
+    role_id: int
     delivers: list[ShowDeliver] = []
     customers: list[ShowCustomer] = []
 
