@@ -11,7 +11,8 @@ from settings.mailgun import send_email
 
 def get_all(db: Session):
     try:
-        users = db.query(models.User).all()
+        users = db.query(models.User).order_by(
+            models.User.firstname.asc()).order_by(models.User.lastname.asc())
         return users
     except:
         return {log_message}
