@@ -39,7 +39,7 @@ def create(request: schemas.User, db: Session):
 
         response = send_email(api_key, domain, from_email,
                               to_email, subject, message)
-        return {"message": "Email sent successfully", "response": response.json(), "new_user": new_user}
+        return new_user
 
     except:
         return {log_message}
@@ -88,4 +88,4 @@ def delete(idUser: int, db: Session):
     db.query(models.User).filter(models.User.idUser ==
                                  idUser).delete(synchronize_session=False)
     db.commit()
-    return "done"
+    return f"Succefull deleted {idUser}"

@@ -136,7 +136,7 @@ class ShowCustomer(BaseModel):
         orm_mode = True
 
 
-class ShowUser(User):
+class ShowUser(UpdateUserAccount):
     idUser: int
     delivers: list[ShowDeliver] = []
     customers: list[ShowCustomer] = []
