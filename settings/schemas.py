@@ -103,7 +103,7 @@ class UpdateOrder(BaseModel):
     product_id: int
 
 
-class ShowOrder(Ordered):
+class ShowOrder(BaseModel):
     idOrdered: int
     ordered_quantity: int
     ordered_date: Optional[datetime] = None
