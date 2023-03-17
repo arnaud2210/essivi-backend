@@ -23,7 +23,8 @@ def create(request: schemas.Product, db: Session):
             db.refresh(new_product)
             return new_product
         else:
-            return print("******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE ET LE PRIX DOIVENT ETRE SUPERIEURE A 0  *************************")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE ET LE PRIX DOIVENT ETRE SUPERIEURE A 0  *************************")
     except:
         return {log_message}
 
@@ -54,7 +55,8 @@ def update(idProduct: int, request: schemas.ShowProduct, db: Session):
             db.commit()
             return "updated"
         else:
-            return print("******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE ET LE PRIX DOIVENT ETRE SUPERIEURE A 0  *************************")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE ET LE PRIX DOIVENT ETRE SUPERIEURE A 0  *************************")
     except:
         return {log_message}
 

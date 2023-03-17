@@ -20,12 +20,14 @@ def create(request: schemas.Ordered, db: Session):
         new_order = models.Ordered(ordered_quantity=request.ordered_quantity, ordered_date=request.ordered_date,
                                    customer_id=request.customer_id, product_id=request.product_id)
         if new_order.ordered_quantity > 0:
+            new_order.ordered_date = datetime.now()
             db.add(new_order)
             db.commit()
             db.refresh(new_order)
             return new_order
         else:
-            return print("******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE DOIT ETRE SUPERIEURE A 0   *************************")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE DOIT ETRE SUPERIEURE A 0   *************************")
     except:
         return {log_message}
 
@@ -55,7 +57,8 @@ def update(idOrder: int, request: schemas.Ordered, db: Session):
             db.commit()
             return "updated"
         else:
-            return print("******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE DOIT ETRE SUPERIEURE A 0   *************************")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE DOIT ETRE SUPERIEURE A 0   *************************")
     except:
         return {log_message}
 
