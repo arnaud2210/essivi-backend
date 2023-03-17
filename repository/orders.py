@@ -20,8 +20,6 @@ def create(request: schemas.Ordered, db: Session):
         new_order = models.Ordered(ordered_quantity=request.ordered_quantity, ordered_date=request.ordered_date,
                                    customer_id=request.customer_id, product_id=request.product_id)
         if new_order.ordered_quantity > 0:
-            new_order.ordered_date = datetime.now()
-            print(new_order)
             db.add(new_order)
             db.commit()
             db.refresh(new_order)
