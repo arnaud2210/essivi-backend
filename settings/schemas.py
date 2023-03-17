@@ -93,7 +93,7 @@ class UpdateUserAccount(BaseModel):
 
 class Ordered(BaseModel):
     ordered_quantity: int
-    ordered_date: Optional[datetime] = None
+    # ordered_date: Optional[datetime] = None
     customer_id: int
     product_id: int
 

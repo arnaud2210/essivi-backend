@@ -6,10 +6,10 @@ from settings import schemas, models
 from package.tools import log_message
 
 
-
 def get_all(db: Session):
     try:
-        orders = db.query(models.Ordered).all()
+        orders = db.query(models.Ordered).order_by(
+            models.Ordered.idOrdered.desc()).all()
         return orders
     except:
         return {log_message}
@@ -17,9 +17,10 @@ def get_all(db: Session):
 
 def create(request: schemas.Ordered, db: Session):
     try:
-        new_order = models.Ordered(ordered_quantity=request.ordered_quantity, ordered_date= request.ordered_date,
-                                customer_id=request.customer_id, product_id=request.product_id)
+        new_order = models.Ordered(ordered_quantity=request.ordered_quantity, ordered_date=request.ordered_date,
+                                   customer_id=request.customer_id, product_id=request.product_id)
         if new_order.ordered_quantity > 0:
+            new_order.ordered_date = datetime.now()
             db.add(new_order)
             db.commit()
             db.refresh(new_order)
@@ -38,6 +39,7 @@ def show_order(idOrdered: int, db: Session):
                             detail=f"order with the id {idOrdered} doesn't exist")
     return order
 
+
 def update(idOrder: int, request: schemas.Ordered, db: Session):
     try:
         order = db.query(models.Ordered).filter(
@@ -46,22 +48,22 @@ def update(idOrder: int, request: schemas.Ordered, db: Session):
         if not order:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                                 detail=f"order with the id {idOrder} not found")
-        
+
         order.ordered_quantity = request.ordered_quantity
         order.product_id = request.product_id
 
-        if order.ordered_quantity > 0:                        
+        if order.ordered_quantity > 0:
             db.commit()
             return "updated"
         else:
             return print("******************    VEUILLEZ VERIFIER LES VALEURS SAISIES ! LA QUANTITE DOIT ETRE SUPERIEURE A 0   *************************")
     except:
-       return {log_message}
+        return {log_message}
 
 
 def delete(idOrdered: int, db: Session):
     db.query(models.Ordered).filter(models.Ordered.idOrdered ==
-                                 idOrdered).delete(synchronize_session=False)
+                                    idOrdered).delete(synchronize_session=False)
     db.commit()
     return {'done'}
 

@@ -7,7 +7,8 @@ from package.tools import log_message
 
 def get_all(db: Session):
     try:
-        customers = db.query(models.Customer).all()
+        customers = db.query(models.Customer).order_by(
+            models.Customer.idCustomer.desc()).all()
         return customers
     except:
         return {log_message}
@@ -16,7 +17,7 @@ def get_all(db: Session):
 def create(request: schemas.Customer, db: Session):
     try:
         new_customer = models.Customer(firstnameOfCustomer=request.firstnameOfCustomer, lastnameOfCustomer=request.lastnameOfCustomer,
-                                    customerPhone=request.customerPhone, longitude=request.longitude, latitude=request.latitude, user_id=request.user_id)
+                                       customerPhone=request.customerPhone, longitude=request.longitude, latitude=request.latitude, user_id=request.user_id)
         db.add(new_customer)
         db.commit()
         db.refresh(new_customer)
@@ -38,11 +39,11 @@ def update(idCustomer: int, request: schemas.Customer, db: Session):
     try:
         customer = db.query(models.Customer).filter(
             models.Customer.idCustomer == idCustomer).first()
-        
+
         if not customer:
-                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                    detail=f"Customer with the id {idCustomer} not found")
-        
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                                detail=f"Customer with the id {idCustomer} not found")
+
         customer.firstnameOfCustomer = request.firstnameOfCustomer
         customer.lastnameOfCustomer = request.lastnameOfCustomer
         customer.customerPhone = request.customerPhone
@@ -74,6 +75,6 @@ def get_invoices(db: Session):
 
 def delete(idCustomer: int, db: Session):
     db.query(models.Customer).filter(models.Customer.idCustomer ==
-                                 idCustomer).delete(synchronize_session=False)
+                                     idCustomer).delete(synchronize_session=False)
     db.commit()
     return {'done'}
