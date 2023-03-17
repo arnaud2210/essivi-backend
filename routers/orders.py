@@ -14,7 +14,7 @@ router = APIRouter(
 
 
 @router.post('/', response_model=schemas.ShowOrder)
-def create_order(request: schemas.ShowOrder, db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+def create_order(request: schemas.Ordered, db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
     return orders.create(request, db)
 
 

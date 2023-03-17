@@ -7,7 +7,7 @@ class Delivery(BaseModel):
     delivery_quantity: int
     delivery_locations: str
     amount_collected: float
-    delivery_date: datetime
+    delivery_date: Optional[datetime] = None
 #    commercial_id: int
     user_id: int
     ordered_id: int
@@ -23,7 +23,7 @@ class ShowDeliver(BaseModel):
     delivery_quantity: int
     delivery_locations: str
     amount_collected: float
-    delivery_date: datetime
+    delivery_date: Optional[datetime] = None
 #    commercial_id: int
     user_id: int
     ordered_id: int
@@ -93,7 +93,7 @@ class UpdateUserAccount(BaseModel):
 
 class Ordered(BaseModel):
     ordered_quantity: int
-    ordered_date: datetime
+    ordered_date: Optional[datetime] = None
     customer_id: int
     product_id: int
 
@@ -106,7 +106,7 @@ class UpdateOrder(BaseModel):
 class ShowOrder(Ordered):
     idOrdered: int
     ordered_quantity: int
-    ordered_date: datetime
+    ordered_date: Optional[datetime] = None
     customer_id: int
     product_id: int
 
