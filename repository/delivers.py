@@ -19,6 +19,7 @@ def create(request: schemas.Delivery, db: Session):
                                       amount_collected=request.amount_collected, delivery_date=request.delivery_date, user_id=request.user_id, ordered_id=request.ordered_id)
 
         if new_deliver.delivery_quantity > 0 and new_deliver.amount_collected >= 0:
+            new_deliver.ordered_date = datetime.now()
             db.add(new_deliver)
             db.commit()
             db.refresh(new_deliver)

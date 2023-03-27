@@ -32,38 +32,6 @@ class ShowDeliver(BaseModel):
         orm_mode = True
 
 
-# class Commercial(BaseModel):
-#    firstnameOfAgent: str
-#    lastnameOfAgent: str
-#    addressOfAgent: str
-#    agentPhone: str
-#    agentState: bool
-
-
-# class ShowAgent(BaseModel):
-#    firstnameOfAgent: str
-#    lastnameOfAgent: str
-#    addressOfAgent: str
-#    agentPhone: str
-#    agentState: bool
-#    delivers: list[ShowDeliver] = []
-
-#    class Config:
-#        orm_mode = True
-
-
-# class AccountUser(BaseModel):
-#    mailOfaccount: str
-#    accountState: bool
-
-
-#class ShowAccount(BaseModel):
-#    accountState: bool
-
-#    class Config:
-#        orm_mode = True
-
-
 class User(BaseModel):
     login: str
     passOfUser: str
@@ -109,6 +77,7 @@ class ShowOrder(BaseModel):
     ordered_date: Optional[datetime] = None
     customer_id: int
     product_id: int
+    delivers: list[ShowDeliver]
 
     class Config:
         orm_mode = True

@@ -14,7 +14,7 @@ router = APIRouter(
 
 
 @router.post('/', response_model=schemas.ShowDeliver)
-def create_deliver(request: schemas.ShowDeliver, db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
+def create_deliver(request: schemas.Delivery, db: Session = Depends(get_db_connect), current_user: schemas.User = Depends(get_current_user)):
     return delivers.create(request, db)
 
 
